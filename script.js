@@ -6,7 +6,7 @@
 // إعدادات خدمة الإرسال
 const CONFIG = {
   // مفتاح Web3Forms الخاص ببريد: sltanbnnasr346@gmail.com
-  web3formsKey: '274c7999-8af6-4943-acd9-3c5cdfedac60',
+  web3formsKey: '54d82128-0637-44f5-86b4-77830ea0b174',
   
   // اسم الشركة الافتراضي
   companyName: 'رسوخ العمرانية',
