@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let isSuccess = false;
       let errorMsg = '';
 
-      // 1. إذا كان مفتاح Web3Forms متوفراً
+      // 1. محاولة الإرسال أولاً عبر Web3Forms إذا كان المفتاح متوفراً
       if (CONFIG.web3formsKey) {
         const formattedDate = new Date().toLocaleString('ar-SA', {
           year: 'numeric',
@@ -278,6 +278,10 @@ document.addEventListener('DOMContentLoaded', () => {
           access_key: CONFIG.web3formsKey,
           subject: 'بيانات العميل روف الروضه - مستشفي ارادة شارع الامل - ' + fullName,
           from_name: 'رسوخ العمرانية - روف الروضه',
+          name: fullName,
+          phone: saudiPhoneInternational,
+          city: cityName,
+          payment: paymentMethod,
           'المشروع': 'بيانات العميل روف الروضه - مستشفي ارادة شارع الامل',
           message: [
             'بيانات العميل روف الروضه',
@@ -299,24 +303,31 @@ document.addEventListener('DOMContentLoaded', () => {
           payload.botcheck = honeypotInput.value;
         }
 
-        const response = await fetch(CONFIG.web3formsEndpoint, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        });
+        try {
+          const response = await fetch(CONFIG.web3formsEndpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
 
-        const result = await response.json();
-        if (response.ok && result.success) {
-          isSuccess = true;
-        } else {
-          errorMsg = result.message || 'تعذر إرسال البيانات حاليًا، يرجى المحاولة مرة أخرى.';
+          const result = await response.json();
+          if (response.ok && result.success) {
+            isSuccess = true;
+          } else {
+            console.warn('Web3Forms returned unsuccessful response, attempting PHP fallback:', result);
+            errorMsg = result.message || '';
+          }
+        } catch (w3Error) {
+          console.warn('Web3Forms fetch error, attempting PHP fallback:', w3Error);
         }
-      } else {
-        // 2. استخدام معالج الخادم PHP كبديل
-        const payload = {
+      }
+
+      // 2. إذا لم ينجح Web3Forms أو لم يتوفر المفتاح، المحاولة عبر معالج PHP
+      if (!isSuccess) {
+        const phpPayload = {
           full_name: fullName,
           phone_number: saudiPhoneInternational,
           city: cityName,
@@ -326,20 +337,24 @@ document.addEventListener('DOMContentLoaded', () => {
           website_url_check: honeypotInput ? honeypotInput.value : ''
         };
 
-        const response = await fetch(CONFIG.phpEndpoint, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        });
+        try {
+          const phpResponse = await fetch(CONFIG.phpEndpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(phpPayload)
+          });
 
-        const result = await response.json();
-        if (response.ok && result.success) {
-          isSuccess = true;
-        } else {
-          errorMsg = result.message || 'تعذر إرسال البيانات حاليًا، يرجى المحاولة مرة أخرى.';
+          const phpResult = await phpResponse.json();
+          if (phpResponse.ok && phpResult.success) {
+            isSuccess = true;
+          } else if (!isSuccess && phpResult.message) {
+            errorMsg = phpResult.message;
+          }
+        } catch (phpErr) {
+          console.error('PHP mailer fallback error:', phpErr);
         }
       }
 
