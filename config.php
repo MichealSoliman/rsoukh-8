@@ -12,8 +12,8 @@ return [
      * أدخل البريد الإلكتروني الذي ترغب في استقبال طلبات التسجيل عليه.
      * مثال: 'info@rosookh.com' أو 'yourname@gmail.com'
      */
-    'recipient_email' => 'rswkhalmranyt@gmail.com',
-    'web3forms_key'   => '88af864b-908a-4bc9-b362-860d522e4a40',
+    'recipient_email' => 'sltanbnnasr346@gmail.com',
+    'web3forms_key'   => '274c7999-8af6-4943-acd9-3c5cdfedac60',
 
     /**
      * 2. طريقة الإرسال:
@@ -37,10 +37,10 @@ return [
     /**
      * 4. تفاصيل الرسالة الافتراضية:
      */
-    'from_name'     => 'رسوخ العمرانية - عمارة وروف مشرفه',
+    'from_name'     => 'رسوخ العمرانية - روف الروضه',
     'from_email'    => '', // اتركه فارغاً ليتم استخدام noreply@ اسم النطاق تلقائياً، أو حدد بريد نطاقك
-    'email_subject' => 'بيانات العميل عمارة وروف مشرفه - مستشفي العزيزية حي العزيزية',
-    'project_title' => 'بيانات العميل عمارة وروف مشرفه',
-    'project_loc'   => 'مستشفي العزيزية حي العزيزية',
+    'email_subject' => 'بيانات العميل روف الروضه - مستشفي ارادة شارع الامل',
+    'project_title' => 'بيانات العميل روف الروضه',
+    'project_loc'   => 'مستشفي ارادة شارع الامل',
     'timezone'      => 'Asia/Riyadh',
 ];

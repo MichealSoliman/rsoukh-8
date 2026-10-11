@@ -5,8 +5,8 @@
 
 // إعدادات خدمة الإرسال
 const CONFIG = {
-  // مفتاح Web3Forms الخاص ببريد: rswkhalmranyt@gmail.com
-  web3formsKey: '88af864b-908a-4bc9-b362-860d522e4a40',
+  // مفتاح Web3Forms الخاص ببريد: sltanbnnasr346@gmail.com
+  web3formsKey: '274c7999-8af6-4943-acd9-3c5cdfedac60',
   
   // اسم الشركة الافتراضي
   companyName: 'رسوخ العمرانية',
@@ -276,21 +276,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const payload = {
           access_key: CONFIG.web3formsKey,
-          subject: 'بيانات العميل عمارة وروف مشرفه - مستشفي العزيزية حي العزيزية - ' + fullName,
-          from_name: 'رسوخ العمرانية - عمارة وروف مشرفه',
-          'المشروع': 'بيانات العميل عمارة وروف مشرفه - مستشفي العزيزية حي العزيزية',
+          subject: 'بيانات العميل روف الروضه - مستشفي ارادة شارع الامل - ' + fullName,
+          from_name: 'رسوخ العمرانية - روف الروضه',
+          'المشروع': 'بيانات العميل روف الروضه - مستشفي ارادة شارع الامل',
           message: [
-            'بيانات العميل عمارة وروف مشرفه',
-            'مستشفي العزيزية حي العزيزية',
+            'بيانات العميل روف الروضه',
+            'مستشفي ارادة شارع الامل',
             '━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
             '• اسم العميل: ' + fullName,
             '• رقم الجوال السعودي: ' + saudiPhoneInternational,
             '• المدينة: ' + cityName,
             '• طريقة الدفع: ' + paymentMethod,
-            '• الموقع / المشروع: مستشفي العزيزية حي العزيزية',
+            '• الموقع / المشروع: مستشفي ارادة شارع الامل',
             '• اسم الشركة: ' + CONFIG.companyName,
             '• تاريخ ووقت الطلب: ' + formattedDate,
-            '• نوع الطلب: تسجيل اهتمام (عمارة وروف مشرفه)',
+            '• نوع الطلب: تسجيل اهتمام (روف الروضه)',
             '━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
           ].join('\n')
         };
@@ -321,8 +321,8 @@ document.addEventListener('DOMContentLoaded', () => {
           phone_number: saudiPhoneInternational,
           city: cityName,
           payment_method: paymentMethod,
-          project_source: 'بيانات العميل عمارة وروف مشرفه - مستشفي العزيزية حي العزيزية',
-          request_type: 'تسجيل اهتمام (عمارة وروف مشرفه)',
+          project_source: 'بيانات العميل روف الروضه - مستشفي ارادة شارع الامل',
+          request_type: 'تسجيل اهتمام (روف الروضه)',
           website_url_check: honeypotInput ? honeypotInput.value : ''
         };
 

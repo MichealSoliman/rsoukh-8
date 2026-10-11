@@ -24,11 +24,11 @@ $configFile = __DIR__ . '/config.php';
 $config = file_exists($configFile) ? require $configFile : [];
 
 $recipientEmail = !empty($config['recipient_email']) ? trim($config['recipient_email']) : '';
-$fromName = !empty($config['from_name']) ? trim($config['from_name']) : 'رسوخ العمرانية - عمارة وروف مشرفه';
+$fromName = !empty($config['from_name']) ? trim($config['from_name']) : 'رسوخ العمرانية - روف الروضه';
 $timezone = !empty($config['timezone']) ? $config['timezone'] : 'Asia/Riyadh';
-$projectTitle = !empty($config['project_title']) ? $config['project_title'] : 'بيانات العميل عمارة وروف مشرفه';
-$projectLoc = !empty($config['project_loc']) ? $config['project_loc'] : 'مستشفي العزيزية حي العزيزية';
-$subjectText = !empty($config['email_subject']) ? $config['email_subject'] : 'بيانات العميل عمارة وروف مشرفه - مستشفي العزيزية حي العزيزية';
+$projectTitle = !empty($config['project_title']) ? $config['project_title'] : 'بيانات العميل روف الروضه';
+$projectLoc = !empty($config['project_loc']) ? $config['project_loc'] : 'مستشفي ارادة شارع الامل';
+$subjectText = !empty($config['email_subject']) ? $config['email_subject'] : 'بيانات العميل روف الروضه - مستشفي ارادة شارع الامل';
 $mailerType = !empty($config['mailer_type']) ? strtolower(trim($config['mailer_type'])) : 'mail';
 
 // ضبط المنطقة الزمنية
@@ -293,7 +293,7 @@ $emailHtml = '
                 </tr>
                 <tr class="data-row">
                     <td class="data-label">المصدر</td>
-                    <td class="data-value">صفحة تسجيل الاهتمام (عمارة وروف مشرفه)</td>
+                    <td class="data-value">صفحة تسجيل الاهتمام (روف الروضه)</td>
                 </tr>
             </table>
         </div>
